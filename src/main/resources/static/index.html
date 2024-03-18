@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Gallery</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link to external CSS file -->
+</head>
+<body>
+
+<header>
+    <h1>Art Gallery</h1>
+</header>
+
+<main>
+    <section class="artworks">
+        <div class="artwork" id="monaLisa">
+            <img src="css/Mona.jpg" alt="Mona Lisa">
+            <h2>Mona Lisa</h2>
+            <p>Artist: Leonardo da Vinci</p>
+        </div>
+
+        <div class="artwork">
+            <img src="css/starry.jpg" alt="Artwork 2">
+            <h2>The Starry Night</h2>
+            <p>Artist: Vincent van Gogh</p>
+        </div>
+
+        <div class="artwork">
+            <img src="css/scream.jpg" alt="Artwork 3">
+            <h2>The Scream</h2>
+            <p>Artist: Edvard Munch</p>
+        </div>
+
+        <div class="artwork" id="monaLisa1">
+            <img src="css/girl.jpg" alt="Mona Lisa">
+            <h2>Girl With a Pearl Earring</h2>
+            <p>Artist: 	Johannes Vermeer</p>
+        </div>
+
+        <div class="artwork">
+            <img src="css/kiss.jpg" alt="Artwork 2">
+            <h2>The Kiss</h2>
+            <p>Artist: Gustav Klimt</p>
+        </div>
+
+        <div class="artwork">
+            <img src="css/mother.jpg" alt="Artwork 3">
+            <h2>Whistler's Mother</h2>
+            <p>Artist: James McNeill Whistler</p>
+        </div>
+
+        <!-- Add more artwork elements as needed -->
+
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Art Gallery</p>
+</footer>
+
+<!-- Custom pop-up modal -->
+<div id="customModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalHeader">Art Details</h2>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    // Add event listener to all artwork elements
+    document.querySelectorAll('.artwork').forEach(artwork => {
+        artwork.addEventListener('click', function() {
+            // Get the artwork name
+            const artworkName = this.querySelector('h2').textContent;
+
+            // Call the backend endpoint with the artwork name as input
+            fetch(`/api/users/getartdetails?name=${encodeURIComponent(artworkName)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Open the custom modal with art details
+                    openModal(artworkName, data);
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+
+    // Function to open the custom modal with art details
+    function openModal(header, body) {
+        const modal = document.getElementById('customModal');
+        const modalHeader = document.getElementById('modalHeader');
+        const modalBody = document.getElementById('modalBody');
+
+        // Set header and body content
+        modalHeader.textContent = header;
+        modalBody.textContent = body;
+
+        // Display the modal
+        modal.style.display = 'block';
+    }
+
+    // Close the modal when the close button or outside modal area is clicked
+    window.onclick = function(event) {
+        const modal = document.getElementById('customModal');
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+        // Get the close button element
+    const closeButton = document.querySelector('.close');
+
+    // Function to close the modal
+    function closeModal() {
+        const modal = document.querySelector('.modal');
+        modal.style.display = 'none';
+    }
+
+    // Add event listener to close button
+    closeButton.addEventListener('click', closeModal);
+</script>
+
+</body>
+</html>

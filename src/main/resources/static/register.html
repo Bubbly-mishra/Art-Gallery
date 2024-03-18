@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="register-body">
+<div class="stars"></div> <!-- Background stars -->
+<div class="register-container">
+  <h1>User Registration</h1>
+  <form id="registrationForm">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button type="submit" class="register-button">Register</button>
+  </form>
+  <div id="registrationMessage"></div>
+</div>
+
+<script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get the form data
+            const formData = new FormData(this);
+
+            // Convert form data to JSON object
+            const jsonData = {};
+            formData.forEach((value, key) => {
+                jsonData[key] = value;
+            });
+
+            // Send a POST request to the backend
+            fetch('/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(response => response.text())
+            .then(message => {
+                // Display registration message
+                document.getElementById('registrationMessage').textContent = message;
+
+                // Redirect to index.html after successful registration
+                if (message === "User registered successfully") {
+                    window.location.href = '/index.html';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

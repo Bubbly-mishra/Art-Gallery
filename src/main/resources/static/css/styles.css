@@ -1,0 +1,200 @@
+.register-body {
+    background-image: url('art_background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 50px 0; /* Add padding to center the form vertically */
+    overflow: hidden; /* Prevent stars from overflowing */
+    position: relative; /* Set position relative for absolute positioning of stars */
+}
+
+.register-container {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+    border-radius: 20px; /* Round corners */
+    padding: 30px; /* Increase padding */
+    width: 350px; /* Increase width */
+    margin: auto;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White shadow */
+}
+
+h1 {
+    color: #fff;
+}
+
+label {
+    font-weight: bold;
+    color: #fff; /* White */
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px; /* Increase padding */
+    margin: 10px 0; /* Increase margin */
+    border: none;
+    border-radius: 10px; /* Round corners */
+    background-color: rgba(255, 255, 255, 0.1); /* White with opacity */
+}
+
+.register-button {
+    background-color: #808080; /* Grey */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px; /* Increase margin */
+    border-radius: 10px; /* Round corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px; /* Decrease font size */
+}
+
+.register-button:hover {
+    background-color: #d3d3d3; /* Light grey */
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none; /* Allow clicks to pass through */
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: #fff;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotateZ(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotateZ(360deg);
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    background-image: url('art_background1.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8; /* Set opacity for a semi-transparent background */
+}
+
+header {
+    background: linear-gradient(to right, black, black);
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+main {
+    padding: 2rem;
+}
+
+.artworks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.artwork {
+    border: 2px solid #3498db;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    width: 300px; /* Fixed width */
+    height: 300px; /* Fixed height */
+    background: linear-gradient(to right, black, black);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer; /* Add cursor pointer for clickable artworks */
+    margin: 10px; /* Add margin for spacing between artwork boxes */
+}
+
+.artwork:hover {
+    transform: scale(1.05);
+}
+
+.artwork img {
+    max-width: 100%;
+    max-height: 80%; /* Ensure the image fits within the artwork box */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.artwork h2 {
+    position: absolute;
+    text-align: center;
+    bottom: 30px; /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
+    color: #fff;
+}
+
+.artwork p {
+    position: absolute;
+    text-align: center;
+    bottom: 10px; /* Adjust as needed */
+    left: 10px; /* Adjust as needed */
+    color: #fff;
+}
+
+footer {
+ background: linear-gradient(to right, black, black);
+     color: white;
+     text-align: center;
+     padding: 1.5rem;
+     width: 100%;
+}
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal content */
+.modal-content {
+    background: linear-gradient(to right, #009973, black); /* Gradient background */
+    color: white;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
