@@ -2,6 +2,7 @@ package com.Art.Gallery.Art.Gallery.Controller;
 
 import com.Art.Gallery.Art.Gallery.Entity.User;
 import com.Art.Gallery.Art.Gallery.Dto.UserDTO;
+import com.Art.Gallery.Art.Gallery.Service.artGalleryServiceIml;
 import com.Art.Gallery.Art.Gallery.Service.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,10 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private artGalleryServiceIml artGalleryServiceIml;
+
 
     @PostMapping("/register")
     public String registerUser(@RequestBody UserDTO userDTO) {
@@ -33,8 +38,6 @@ public class UserController {
 
     @GetMapping("/getartdetails")
     public String getArtData(@RequestParam String name) {
-        // Simulate fetching data for the given artwork name from the backend
-        String artData = "Data for artwork '" + name + "'";
-        return artData;
+        return artGalleryServiceIml.getArtworkDetails(name);
     }
 }
